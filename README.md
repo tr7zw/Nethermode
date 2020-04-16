@@ -9,7 +9,7 @@ This small mod moves the world spawn where new players/respawning players will b
 - The closest Ruined Portal to the coordinates of the normal overworld spawn is used as the new Nether spawn
 - No files are modified (the spawn position will not be changed in the level.dat)
 - Works in Singleplayer or Multiplayer(only needs to be installed on the server, vanilla clients can join)
-- Doesn't change anything else. Try a vanilla hardcore challange, play casual with friends or combine it with mods like [NetherHigher](https://www.curseforge.com/minecraft/mc-mods/netherhigher) or [BetterNether](https://www.curseforge.com/minecraft/mc-mods/betternether) to create an awesome Nether modpack.
+- Doesn't change anything else. Try a vanilla hardcore challenge, play casual with friends or combine it with mods like [NetherHigher](https://www.curseforge.com/minecraft/mc-mods/netherhigher) or [BetterNether](https://www.curseforge.com/minecraft/mc-mods/betternether) to create an awesome Nether modpack.
 
 ## Known problems
 
@@ -22,4 +22,4 @@ If you have some ideas/knowhow on how to improve the mod (for example the in lav
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects/modpacks.
+This project is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects/modpacks.
