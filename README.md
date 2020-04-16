@@ -1,5 +1,7 @@
 # Nethermode
 
+![Java CI](https://github.com/tr7zw/Nethermode/workflows/Java%20CI/badge.svg)
+
 This small mod moves the world spawn where new players/respawning players will be teleported to into the Nether. Since 1.16 the Nether has everything needed for a normal/full Minecraft playthrough (cobblestone, wood, food, ores, light, obsidian for portals, etc), and this mod allows you to start your playthrough inside the Nether. The spawnpoint can be changed like normal using Respawn Anchors or Beds.
 
 ## Features/Goals
