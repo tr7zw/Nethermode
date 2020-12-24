@@ -11,8 +11,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.WorldGenerationProgressListener;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldSaveHandler;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.level.LevelInfo;
 import net.minecraft.world.level.LevelProperties;
 
@@ -20,25 +21,18 @@ import net.minecraft.world.level.LevelProperties;
 public abstract class MinecraftServerMixin {
 
 	@Shadow
-	public abstract ServerWorld getWorld(DimensionType dimensionType);
+	public abstract ServerWorld getWorld(RegistryKey<World> key);
 	@Shadow
 	public abstract PlayerManager getPlayerManager();
 
-	@Redirect(method = "prepareStartRegion", at = @At(value = "INVOKE", target = "net/minecraft/server/MinecraftServer.getWorld(Lnet/minecraft/world/dimension/DimensionType;)Lnet/minecraft/server/world/ServerWorld;"))
-	protected ServerWorld replaceStartWorld(MinecraftServer server, DimensionType dimension) {
-		if (dimension == DimensionType.OVERWORLD) {
-			return getWorld(DimensionType.THE_NETHER);
-		} else if (dimension == DimensionType.THE_NETHER) {
-			return getWorld(DimensionType.OVERWORLD);
-		} else {
-			return getWorld(dimension);
-		}
+	@Redirect(method = "prepareStartRegion", at = @At(value = "INVOKE", target = "net/minecraft/server/MinecraftServer.getOverworld()Lnet/minecraft/server/world/ServerWorld;"))
+	protected ServerWorld replaceStartWorld(MinecraftServer server) {
+		return server.getWorld(World.NETHER);
 	}
 
 	@Inject(method = "createWorlds", at = @At(value = "RETURN"))
-	protected void createWorlds(WorldSaveHandler worldSaveHandler, LevelProperties properties, LevelInfo levelInfo,
-			WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo info) {
-		getPlayerManager().setMainWorld(getWorld(DimensionType.THE_NETHER));
+	protected void createWorlds(WorldGenerationProgressListener worldGenerationProgressListener, CallbackInfo info) {
+		getPlayerManager().setMainWorld(getWorld(World.NETHER));
 	}
 
 }
